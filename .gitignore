@@ -1,0 +1,4 @@
+*.pyc
+.git/
+blog/static/blog/bower_components/
+blog/static/blog/node_modules/

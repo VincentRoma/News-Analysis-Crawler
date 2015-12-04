@@ -1,0 +1,52 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>News List</h1>
+            </div>
+            <div class="col-md-12">
+                <ul class="list-group">
+                    {% for item in news.object_list %}
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <a href="{{item.link_url}}" target="_blank">{{item.title}}</a>
+                                </div>
+                                <div class="col-md-2">
+                                    <span style="float: right">{{ item.created_at|date:"D d M Y P" }}</span>
+                                </div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="col-md-3 col-md-offset-6">
+                <nav>
+                    <ul class="pagination">
+                        {% if news.has_previous %}
+                            <li>
+                                <a href="?page={{ news.previous_page_number }}" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                        {% endif %}
+
+                            <li class="current">
+                                <a href="#">{{ news.number }}/{{ news.paginator.num_pages }}</a>
+                            </li>
+
+                        {% if news.has_next %}
+                            <li>
+                                <a href="?page={{ news.next_page_number }}" aria-label="Previous">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+{% endblock %}

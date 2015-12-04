@@ -1,0 +1,43 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Posts List</h1>
+            </div>
+            <div class="col-md-12">
+                <ul class="list-group">
+                    {% for post in posts.object_list %}
+                        <li class="list-group-item"><a href="{{post.link_url}}" target="_blank">{{post.title}}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="col-md-3 col-md-offset-6">
+                <nav>
+                    <ul class="pagination">
+                        {% if posts.has_previous %}
+                            <li>
+                                <a href="?page={{ posts.previous_page_number }}" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                        {% endif %}
+
+                            <li class="current">
+                                <a href="#">{{ posts.number }}/{{ posts.paginator.num_pages }}</a>
+                            </li>
+
+                        {% if posts.has_next %}
+                            <li>
+                                <a href="?page={{ posts.next_page_number }}" aria-label="Previous">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+{% endblock %}

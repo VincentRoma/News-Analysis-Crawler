@@ -1,0 +1,17 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        {% for thread in chan_updates %}
+            <div class="col-xs-6 col-lg-4" style="overflow: auto">
+                <a href="{{thread.link}}" target="_blank">
+                    <img src="{{thread.picture}}" height="200px" style="max-width:300px"/>
+                </a>
+                <p style="height: 250px;">{{thread.com | safe}}</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
