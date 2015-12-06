@@ -7,12 +7,12 @@ from news.models import News
 def HomeViews(request):
     slider_posts = Post.objects.filter(slider=True)
     posts = Post.objects.all()[:20]
-
+    externals = News.objects.all().order_by('-created_at')[:20]
     ## Get Statistics ##
     nb_news = News.objects.all().count()
     nb_posts = Post.objects.all().count()
     nb_refugee = News.objects.filter(title__contains="refugee").count()
-    nb_terror = News.objects.filter(Q(title__contains="ISIS") | Q(title__contains="Daesh") | Q(title__contains="terror")).count()
+    nb_terror = News.objects.filter(Q(title__contains="ISIS") | Q(title__contains="Daesh") | Q(title__contains="terror") | Q(title__contains="Islamic")).count()
 
     return render(request, 'blog/home.html', {
         'posts': posts,
@@ -21,5 +21,6 @@ def HomeViews(request):
         'nb_refugee': nb_refugee,
         'nb_terror': nb_terror,
         'nb_posts': nb_posts,
-        'nb_news': nb_news
+        'nb_news': nb_news,
+        'externals': externals
     })
