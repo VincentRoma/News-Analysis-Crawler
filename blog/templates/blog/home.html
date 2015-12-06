@@ -28,10 +28,12 @@
             {% else %}
                 <div class="item">
             {% endif %}
-                    <img src="{{ slide.url_picture }}" alt="{{ slide.title }}">
-                    <div class="carousel-caption">
-                        {{ slide.title }}
-                    </div>
+                    <a href="#">
+                        <img src="{{ slide.url_picture }}" alt="{{ slide.title }}">
+                        <div class="carousel-caption">
+                            {{ slide.title }}
+                        </div>
+                    </a>
                 </div>
         {% endfor %}
     </div>
@@ -50,13 +52,43 @@
 <div class="container">
         <!-- Example row of columns -->
     <div class="row">
-        {% for post in posts %}
-            <div class="col-md-12">
-                <a href="{{post.url_link}}" target="_blank">
-                    <h3>{{post.title}}</h3>
-                </a>
+        <div class="col-md-8">
+            <h3>Recent Articles</h3>
+            <hr>
+            {% for post in posts %}
+                <div>
+                    <a href="{{post.url_link}}" target="_blank">
+                        <h3>{{post.title}}</h3>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="col-md-4">
+            <h3>Statistics</h3>
+            <hr>
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <span class="badge">{{ nb_news }}</span>
+                            External News
+                        </li>
+                        <li class="list-group-item">
+                            <span class="badge">{{ nb_terror }}</span>
+                            Terrorism News
+                        </li>
+                        <li class="list-group-item">
+                            <span class="badge">{{ nb_refugee }}</span>
+                            Refugee News
+                        </li>
+                        <li class="list-group-item">
+                            <span class="badge">{{ nb_posts }}</span>
+                            Internal Posts
+                        </li>
+                    </ul>
+                </div>
             </div>
-        {% endfor %}
+        </div>
     </div>
 
     <hr>
