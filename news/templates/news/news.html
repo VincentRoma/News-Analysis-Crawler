@@ -11,10 +11,10 @@
                     {% for item in news.object_list %}
                         <li class="list-group-item">
                             <div class="row">
-                                <div class="col-md-10">
-                                    <a href="{{item.link_url}}" target="_blank">{{item.title}}</a>
+                                <div class="col-md-9">
+                                    <a href="{{item.description}}" target="_blank">{{item.title}}</a>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-3">
                                     <span style="float: right">{{ item.created_at|date:"D d M Y P" }}</span>
                                 </div>
                             </div>

@@ -6390,7 +6390,8 @@ button.close {
   position: absolute;
   left: 15%;
   right: 15%;
-  bottom: 20px;
+  font-size: 2em;
+  top: 170px;
   z-index: 10;
   padding-top: 20px;
   padding-bottom: 20px;
@@ -6723,5 +6724,12 @@ button.close {
   .hidden-print {
     display: none !important;
   }
+}
+.content {
+  margin-top: 4em;
+}
+.slider--max {
+  height: 400px;
+  overflow: auto;
 }
 /*# sourceMappingURL=bootstrap.css.map */

@@ -4,5 +4,5 @@ from post.models import Post
 
 def HomeViews(request):
     slider_posts = Post.objects.filter(slider=True)
-    posts = Post.objects.filter(slider=False)
+    posts = Post.objects.all()[:20]
     return render(request, 'blog/home.html', {'posts': posts, 'slider_posts': slider_posts, 'state': 'home'})

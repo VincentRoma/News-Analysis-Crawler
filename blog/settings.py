@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'post',
     'news',
     'halfchan',
+    'feed',
 )
 
 MIDDLEWARE_CLASSES = (
