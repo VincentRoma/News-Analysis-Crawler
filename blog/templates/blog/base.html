@@ -37,20 +37,6 @@
                             {% endif %}
                                 <a href="{% url 'news' %}">External News</a>
                             </li>
-                            {% if state = 'halfchan' %}
-                            <li class="active">
-                            {% else %}
-                            <li>
-                            {% endif %}
-                                <a href="{% url 'halfchan' %}">HalfChan News</a>
-                            </li>
-                            {% if state = 'post' %}
-                            <li class="active">
-                            {% else %}
-                            <li>
-                            {% endif %}
-                                <a href="{% url 'post' %}">Posts</a>
-                            </li>
                         </ul>
                     </div>
                 </div>

@@ -26,6 +26,10 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# REMOTE SERVICE
+
+CRAWLER_URL = 'http://198.100.148.18:8080/?url='
+
 
 # Application definition
 
@@ -39,7 +43,6 @@ INSTALLED_APPS = (
     'blog',
     'post',
     'news',
-    'halfchan',
     'feed',
 )
 

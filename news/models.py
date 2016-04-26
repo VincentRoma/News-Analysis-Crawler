@@ -7,6 +7,7 @@ class News(models.Model):
     news_type = models.CharField(max_length=500, default="worldnews")
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now_add=True)
+    has_been_fetched = models.BooleanField(default=False)
 
     def __unicode__(self):
        return 'News: ' + self.title
@@ -33,3 +34,13 @@ class News(models.Model):
                 news.delete()
                 count = count + 1
         print "{} duplicated news deleted".format(count)
+
+
+class CoreNews(models.Model):
+    title = models.CharField(max_length=500)
+    description = models.CharField(max_length=1000)
+    created_at = models.DateTimeField(auto_now_add=True)
+    text = models.CharField(max_length=10000)
+
+    def __unicode__(self):
+       return 'Core: ' + self.title
