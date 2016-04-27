@@ -24,6 +24,6 @@ class Command(BaseCommand):
                     description=item.description,
                     text=result['text']
                 )
-                #HAS BEEN FETCH
-                item.has_been_fetched = True
-                item.save()
+            #HAS BEEN FETCH
+            item.has_been_fetched = True
+            item.save()
