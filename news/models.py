@@ -8,6 +8,7 @@ class News(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now_add=True)
     has_been_fetched = models.BooleanField(default=False)
+    source = models.CharField(max_length=500, null=True)
 
     def __unicode__(self):
        return 'News: ' + self.title
