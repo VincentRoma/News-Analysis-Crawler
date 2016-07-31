@@ -1,7 +1,8 @@
 from django.db import models
+from django_elasticsearch.models import EsIndexable
 
 
-class News(models.Model):
+class News(EsIndexable, models.Model):
     title = models.CharField(max_length=500)
     description = models.CharField(max_length=1000)
     news_type = models.CharField(max_length=500, default="worldnews")

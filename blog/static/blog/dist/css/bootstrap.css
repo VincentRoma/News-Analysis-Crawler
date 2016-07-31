@@ -6732,4 +6732,8 @@ button.close {
   height: 400px;
   overflow: hidden;
 }
+.explore {
+  text-align: center;
+  margin-bottom: 5em;
+}
 /*# sourceMappingURL=bootstrap.css.map */

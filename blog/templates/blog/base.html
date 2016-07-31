@@ -37,6 +37,13 @@
                             {% endif %}
                                 <a href="{% url 'news' %}">External News</a>
                             </li>
+                            {% if state = 'explore' %}
+                            <li class="active">
+                            {% else %}
+                            <li>
+                            {% endif %}
+                                <a href="{% url 'explore' %}">Explore</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
