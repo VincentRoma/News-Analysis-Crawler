@@ -14,5 +14,6 @@ urlpatterns = patterns('',
     url(r'^posts/', post_views, name='post'),
     url(r'^news/', news_views, name='news'),
     url(r'^explore/', explore_views, name='explore'),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^$', home_views, name='home'),
 )

@@ -18,3 +18,17 @@ def NewsViews(request):
         news = paginator.page(paginator.num_pages)
 
     return render(request, 'news/news.html', {'news': news, 'state': 'news'})
+
+from django.conf.urls import url, include
+from rest_framework import routers, serializers, viewsets
+
+# Serializers define the API representation.
+class NewsSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = News
+        fields = ('id', 'title', 'description', 'created_at')
+
+# ViewSets define the view behavior.
+class NewsViewSet(viewsets.ModelViewSet):
+    queryset = News.objects.all()
+    serializer_class = NewsSerializer
