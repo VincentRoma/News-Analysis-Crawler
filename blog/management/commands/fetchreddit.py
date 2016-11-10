@@ -10,8 +10,8 @@ class Command(BaseCommand):
         pass
 
     def handle(self, *args, **options):
-        News.fetch_reddit_news('worldnews')
-        News.fetch_reddit_news('news')
-        News.fetch_reddit_news('RefugeeCrisis')
-        News.fetch_reddit_news('migrantsituation')
+        News.fetch_reddit_news('worldnews', 'EN')
+        News.fetch_reddit_news('news', 'EN')
+        News.fetch_reddit_news('RefugeeCrisis', 'EN')
+        News.fetch_reddit_news('migrantsituation', 'EN')
         Feed.fetch_rss_news()
