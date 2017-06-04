@@ -4,6 +4,7 @@ from django.db import models
 class News( models.Model):
     title = models.CharField(max_length=500)
     description = models.CharField(max_length=1000)
+    domain = models.CharField(max_length=100, null=False, default="unkown")
     news_type = models.CharField(max_length=500, default="worldnews")
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now_add=True)

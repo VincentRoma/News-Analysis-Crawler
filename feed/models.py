@@ -1,6 +1,7 @@
 from django.db import models
 from news.models import News
 import feedparser
+import re
 
 class Feed(models.Model):
     title = models.CharField(max_length=500)
@@ -19,4 +20,11 @@ class Feed(models.Model):
         for feed in feeds:
             rss = feedparser.parse(feed.url)
             for entry in rss.entries:
-                news, created = News.objects.get_or_create(title=entry.title, description=entry.link, news_type="rss", region=feed.region)
+                se = re.search(ur'^(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:\/\n]+)', entry.link)
+                if se:
+                    entry.domain = se.group(1)
+                news, created = News.objects.get_or_create(title=entry.title,
+                    description=entry.link,
+                    news_type="rss",
+                    region=feed.region,
+                    domain=entry.domain)
