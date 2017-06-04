@@ -37,6 +37,50 @@ class News( models.Model):
                 count = count + 1
         print "{} duplicated news deleted".format(count)
 
+    @staticmethod
+    def time_aggregation(format_date):
+        results = {}
+        news = News.objects.all()
+        for item in news:
+            date = item.created_at.strftime(format_date)
+            if date in results.keys():
+                results[date] = results[date] + 1
+            else:
+                results[date] = 1
+        return results
+
+    @staticmethod
+    def domain_aggregation():
+        import re
+        domains = []
+        results = {}
+        news = News.objects.all()
+        for n in news:
+            se = re.search(ur'^(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:\/\n]+)', n.description)
+            if se:
+                domains.append(se.group(1))
+        for item in domains:
+            if item in results.keys():
+                results[item] = results[item] + 1
+            else:
+                results[item] = 1
+        return results
+
+    # def domain_time_aggregation():
+    #     by_dates = {}
+    #     results = {}
+    #     news = News.objects.all()
+    #     for n in news:
+    #         se = re.search(ur'^(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:\/\n]+)', n.description)
+    #         if se:
+    #             if se.group(1) in by_dates.keys():
+    #                  by_dates[se.group(1)] = by_dates[se.group(1)]
+    #             domains.append(se.group(1))
+    #     for item in domains:
+    #         if item in results.keys():
+    #             results[item] = results[item] + 1
+    #         else:
+    #             results[item] = 1
 
 class CoreNews(models.Model):
     title = models.CharField(max_length=500)
