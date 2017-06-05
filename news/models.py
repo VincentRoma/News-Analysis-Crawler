@@ -20,11 +20,11 @@ class News( models.Model):
     @staticmethod
     def fetch_reddit_news(channel, region):
         import praw
-        r = praw.Reddit(client_id='JdSZODvI_fAtmw',
-                     client_secret='CsDCicrNxvCNpJiRZ_AzlAgj1oA',
-                     password='vuu9ih45',
-                     user_agent='News Fetcher',
-                     username='Aixemple')
+        r = praw.Reddit(client_id='xxxxxxx',
+                     client_secret='xxxxx',
+                     password='xxxx',
+                     user_agent='xxxxx',
+                     username='xxxxxxx')
         submissions = r.subreddit(channel).get_hot(limit=100)
         for x in submissions:
             news, created = News.objects.get_or_create(description=x.url, region=region)
