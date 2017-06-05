@@ -46,14 +46,6 @@ class NewsViewSet(viewsets.ModelViewSet):
     def sources_time(self, request):
         domains = []
         results = {}
-        news = News.objects.all()
-        for n in news:
-            se = re.search(ur'^(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:\/\n]+)', n.description)
-            if se:
-                domains.append(se.group(1))
-        for item in domains:
-            if item in results.keys():
-                results[item] = results[item] + 1
-            else:
-                results[item] = 1
-        return Response(results)
+        news = News.objects.raw('SELECT id, domain, created_at, COUNT(*) AS nb_article FROM news_news GROUP BY domain, created_at;')
+        import pdb; pdb.set_trace()
+        return Response(news)

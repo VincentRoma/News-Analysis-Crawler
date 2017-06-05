@@ -3,7 +3,17 @@
 from __future__ import unicode_literals
 
 from django.db import migrations, models
+import re
 
+def add_domain(apps, schema_editor):
+    # We can't import the Person model directly as it may be a newer
+    # version than this migration expects. We use the historical version.
+    News = apps.get_model('news', 'News')
+    for n in News.objects.all():
+        se = re.search(ur'^(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:\/\n]+)', n.description)
+        if se:
+            n.domain = se.group(1)
+        n.save()
 
 class Migration(migrations.Migration):
 
@@ -17,4 +27,5 @@ class Migration(migrations.Migration):
             name='domain',
             field=models.CharField(default=b'unkown', max_length=100),
         ),
+        migrations.RunPython(add_domain),
     ]
