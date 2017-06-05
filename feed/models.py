@@ -1,5 +1,6 @@
 from django.db import models
 from news.models import News
+from django.core.exceptions import MultipleObjectsReturned
 import feedparser
 
 class Feed(models.Model):
