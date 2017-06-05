@@ -19,7 +19,10 @@ class Feed(models.Model):
         for feed in feeds:
             rss = feedparser.parse(feed.url)
             for entry in rss.entries:
-                news, created = News.objects.get_or_create(title=entry.title,
-                    description=entry.link,
-                    news_type="rss",
-                    region=feed.region)
+                try:
+                    news, created = News.objects.get_or_create(title=entry.title,
+                        description=entry.link,
+                        news_type="rss",
+                        region=feed.region)
+                except MultipleObjectsReturned:
+                    print "Multiple value in get return"

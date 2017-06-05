@@ -1,6 +1,7 @@
 from django.db import models
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
+from django.core.exceptions import MultipleObjectsReturned
 import re
 
 class News( models.Model):
@@ -25,9 +26,12 @@ class News( models.Model):
                      password='xxxx',
                      user_agent='xxxxx',
                      username='xxxxxxx')
-        submissions = r.subreddit(channel).get_hot(limit=100)
+        submissions = r.subreddit(channel).hot(limit=100)
         for x in submissions:
-            news, created = News.objects.get_or_create(description=x.url, region=region)
+            try:
+                news, created = News.objects.get_or_create(description=x.url, region=region)
+            except MultipleObjectsReturned:
+                print "Multiple value in get return"
             if created:
                 news.title = x.title
                 news.news_type = channel
