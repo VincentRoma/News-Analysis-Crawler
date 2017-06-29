@@ -78,7 +78,7 @@ class News( models.Model):
         return results
 
 
-    @receiver(pre_save)
+    @receiver(pre_save, sender='news.News')
     def my_callback(sender, instance, *args, **kwargs):
         se = re.search(ur'^(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:\/\n]+)', instance.description)
         if se:
