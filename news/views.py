@@ -2,6 +2,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from rest_framework.decorators import list_route
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from .models import News
 
 from rest_framework import routers, serializers, viewsets
@@ -14,6 +15,7 @@ class NewsSerializer(serializers.HyperlinkedModelSerializer):
 
 # ViewSets define the view behavior.
 class NewsViewSet(viewsets.ModelViewSet):
+    permission_classes = (IsAuthenticatedOrReadOnly,)
     queryset = News.objects.all()
     serializer_class = NewsSerializer
 
